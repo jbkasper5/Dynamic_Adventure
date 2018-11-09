@@ -17,6 +17,7 @@ public class main extends JPanel{
     sceneArt scene = new sceneArt();
     frame.add(scene);
     frame.setResizable(false);
+    frame.setLocationRelativeTo(null);
     frame.setVisible(true);
   }
 
@@ -24,5 +25,3 @@ public class main extends JPanel{
     return (int) (Math.random() * 2);
   }
 }
-
-

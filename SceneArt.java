@@ -12,19 +12,23 @@ class sceneArt extends JPanel implements KeyListener{
   BufferedImage cave;
   boolean yn = false;
   boolean lr = false;
+  boolean frameMade = false;
+  JFrame inventory = new JFrame("inventory");
+  int numInvetoryClicks = 0;
   String newline = System.getProperty("line.separator");
   int[] numScenes = new int[10];
   int num;
   public sceneArt(){
     try{
-       trophy = ImageIO.read(new File("trophy.png"));
-       cave = ImageIO.read(new File("cave.png"));
+       trophy = ImageIO.read(new File("Scenes/trophy.png"));
+       cave = ImageIO.read(new File("Scenes/cave.png"));
     }catch (IOException e) {
     }
     addKeyListener(this);
     setFocusable(true);
   }
   public void paintComponent(Graphics g){
+    makeFrame makeFrame = new makeFrame();
     int topMargin = 100;
     int x = 0;
     int y = 0;
@@ -170,6 +174,16 @@ class sceneArt extends JPanel implements KeyListener{
 
     }else{
       System.out.println("DIS BOI NOT A KEYEVENT");
+    }
+    if (code == KeyEvent.VK_I){
+      if (numInvetoryClicks == 0){
+        makeFrame.createFrame(inventory, 280, 722);
+      }else if (numInvetoryClicks > 0 && numInvetoryClicks % 2 == 0){
+        inventory.setVisible(true);
+      }else if(numInvetoryClicks > 0 && numInvetoryClicks % 2 == 1){
+        inventory.setVisible(false);
+      }
+      numInvetoryClicks += 1;
     }
   }
   public void keyReleased(KeyEvent e){}
