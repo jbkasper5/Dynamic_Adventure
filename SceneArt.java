@@ -10,14 +10,17 @@ import java.awt.event.*;
 class sceneArt extends JPanel implements KeyListener{
   BufferedImage trophy;
   BufferedImage cave;
+  makeFrame makeFrame = new makeFrame();
   boolean yn = false;
   boolean lr = false;
   boolean frameMade = false;
+  boolean getTorch = false;
   JFrame inventory = new JFrame("inventory");
   int numInvetoryClicks = 0;
   String newline = System.getProperty("line.separator");
   int[] numScenes = new int[10];
   int num;
+  int numItems = 0;
   public sceneArt(){
     try{
        trophy = ImageIO.read(new File("Scenes/trophy.png"));
@@ -28,7 +31,6 @@ class sceneArt extends JPanel implements KeyListener{
     setFocusable(true);
   }
   public void paintComponent(Graphics g){
-    makeFrame makeFrame = new makeFrame();
     int topMargin = 100;
     int x = 0;
     int y = 0;
@@ -163,13 +165,18 @@ class sceneArt extends JPanel implements KeyListener{
   }
   public void keyPressed(KeyEvent e){
     int code = e.getKeyCode();
+    System.out.println(yn);
     if (yn){
       if (code == KeyEvent.VK_Y){
-        System.out.println("Ya entered da cave");
+        System.out.println("Ya entered da cave, and found a torch");
+        makeFrame.AddInventory(inventory, "torch", numItems);
+        numItems += 1;
+        getTorch = true;
+        yn = false;
       }else if (code == KeyEvent.VK_N){
         System.out.println("Ya left da cave");
+        yn = false;
       }
-      yn = false;
     }else if (lr){
 
     }else{
@@ -180,6 +187,8 @@ class sceneArt extends JPanel implements KeyListener{
         makeFrame.createFrame(inventory, 280, 722);
       }else if (numInvetoryClicks > 0 && numInvetoryClicks % 2 == 0){
         inventory.setVisible(true);
+        makeFrame.AddInventory(inventory, "YEET", numItems);
+        numItems += 1;
       }else if(numInvetoryClicks > 0 && numInvetoryClicks % 2 == 1){
         inventory.setVisible(false);
       }
