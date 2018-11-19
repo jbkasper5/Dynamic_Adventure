@@ -3,6 +3,7 @@ import java.awt.*;
 class makeFrame extends JPanel{
   public static void createFrame(JFrame frame, int width, int height){
     frame.setSize(width, height);
+    frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
     frame.setResizable(false);
     frame.setVisible(true);
   }

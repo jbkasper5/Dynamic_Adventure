@@ -22,6 +22,6 @@ public class main extends JPanel{
   }
 
   public int randomNum(){
-    return (int) (Math.random() * 2);
+    return (int) (Math.random() * 5);
   }
 }
